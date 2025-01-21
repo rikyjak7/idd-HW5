@@ -1,0 +1,17 @@
+//gia fatte ma discutibili
+FASE0: Applicato metodo ibrido: manuale + GPT
+FASE1: Address vs Headquarters(city country etc.) con funzione parsing
+FASE1: Sectors vs Notes vs industry
+FASE3: Blocking sulla similarità fonetica del nome aziendale
+FASE3: Pairwaise-matching sul nome aziendale esatto
+
+//da fare(forse)
+FASE0: sperimentare altri metodi 
+FASE1:Gestione codici(EMTAK,SIC, ETC.) 
+FASE1:Colonne delle tabelle Partner e Rappresentanti da interpretare(ultimi 2 file)
+
+//da fare
+GENERALE: controllino eventuali commenti GPT
+FASE3: effettuare un blocking di diverso tipo
+FASE3: calcolare pairwaise con altri strumenti
+FASE3: confrontare diverse combo pairwaise-blocking
