@@ -1,88 +1,104 @@
-import pandas as pd
-import recordlinkage
-from recordlinkage import Compare
-from sklearn.metrics import precision_score, recall_score, f1_score
+import jellyfish
+import csv
+from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score
 
-# 1. Caricamento dei dati
-clusters_df = pd.read_csv('C:/Users/hp/idd-HW5/updated_clusters.csv')  # Percorso del file clusters.csv
-ground_truth_df = pd.read_csv('C:/Users/hp/idd-HW5/GROUND_TRUTH.csv', names=['company_name1', 'company_name2', 'label'])  # Percorso del file GROUND_TRUTH.csv
+# File di input e output
+file_path = "C:/Users/crist/OneDrive/Documenti/GitHub/idd-HW5/csv_files/all_pairs_embedding.csv"  # File con le coppie effettive
+ground_truth_path = "C:/Users/crist/OneDrive/Documenti/GitHub/idd-HW5/csv_files/GROUND_TRUTH.csv"  # File con la ground truth (coppie e label)
+output_path = "C:/Users/crist/OneDrive/Documenti/GitHub/idd-HW5/csv_files/output_embedding_recordLinkage.csv"  # File per salvare i risultati
 
-# 2. Preprocessing dei dati
-clusters_df = clusters_df.dropna(subset=['Company Name'])
-cluster_dict = {}
-for _, row in clusters_df.iterrows():
-    cluster_id = row['Cluster ID']
-    if isinstance(row['Company Name'], str):
-        companies = row['Company Name'].split(', ')
-    else:
-        companies = []  
-    cluster_dict[cluster_id] = companies
+# Lettura delle coppie effettive dal file principale
+effettive = set()  # Usa un set per un lookup veloce
+with open(file_path, "r", newline="", encoding="utf-8") as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        company1 = row["Company_Name_1"]
+        company2 = row["Company_Name_2"]
+        effettive.add((company1, company2))
 
-candidate_pairs = []
-max_companies_per_cluster = 50  
+# Lettura della ground truth e verifica
+y_true = []  # Label della ground truth
+y_pred = []  # Previsioni basate sulla similarità
+threshold = 0.8  # Soglia per considerare una similarità "alta"
 
-for cluster_id, companies in cluster_dict.items():
-    if len(companies) > max_companies_per_cluster:
-        companies = companies[:max_companies_per_cluster]
-    for i in range(len(companies)):
-        for j in range(i + 1, len(companies)):
-            candidate_pairs.append((companies[i], companies[j], cluster_id))
+false_positives=0
+false_negatives=0
+match_counter=0
 
-candidate_df = pd.DataFrame(candidate_pairs, columns=['company_name1', 'company_name2', 'cluster_id'])
+false_positives_pairs=[]
+false_negatives_pairs=[]
 
-# 3. Creazione dei matcher
-indexer = recordlinkage.Index()
-indexer.block('cluster_id')  
-candidate_pairs_index = indexer.index(candidate_df)
+with open(ground_truth_path, "r", newline="", encoding="utf-8") as gt_file, \
+     open(output_path, "w", newline="", encoding="utf-8") as outputfile:
+    
+    gt_reader = csv.reader(gt_file)
+    writer = csv.writer(outputfile)
+    
+    # Scrivi l'intestazione nel file di output
+    writer.writerow(["Company_Name_1", "Company_Name_2", "Ground_Truth", "Similarity", "Prediction", "Result"])
+    
+    # Salta l'intestazione del file di ground truth
+    next(gt_reader, None)
+    
+    for row in gt_reader:
+        if len(row) < 3:  # Salta righe incomplete
+            continue
+        
+        company1, company2, label = row[0], row[1], int(row[2])
+        y_true.append(label)  # Aggiungi la label della ground truth
+        
+        # Verifica se la coppia è presente nel file effettivo
+        pair_present = ((company1, company2)) in effettive
+        similarity = 0.0  # Default
+        
+        if pair_present:
+            # Calcola la similarità se la coppia è presente
+            similarity = jellyfish.jaro_winkler_similarity(company1, company2)
+        
+        # Logica di predizione
+        if label == 1:
+            # Se la coppia deve essere presente
+            if pair_present and similarity >= threshold:
+                prediction = 1 
+            else:
+                prediction = 0
+                false_negatives+=1
+                false_negatives_pairs.append((company1,company2))
+        else:
+            # Se la coppia non deve essere presente
+            if pair_present:
+                prediction = 1 
+                false_positives+=1
+                false_positives_pairs.append((company1,company2))
+            else:
+                prediction=0
+        
+        # Aggiungi la previsione
+        y_pred.append(prediction)
+        
+        # Determina il risultato (match o mismatch con la ground truth)
+        result = "Match" if prediction == label else "Mismatch"
+        if result == "Match":
+            match_counter+=1
+        
+        # Salva i risultati
+        writer.writerow([company1, company2, label, f"{similarity:.4f}", prediction, result])
 
-comparator = Compare()
-comparator.string('company_name1', 'company_name2', method='jaro_winkler', threshold=0.60, label='company_name')  # Soglia abbassata
+# Calcolo delle metriche
+precision = match_counter/105
+recall = match_counter/(match_counter+false_positives)
+f1 = (2*precision*recall)/(precision+recall)
+accuracy = accuracy_score(y_true, y_pred)
 
-features = comparator.compute(candidate_pairs_index, candidate_df)
-
-# 4. Calcolo delle previsioni
-predictions = features['company_name'] > 0.60  
-
-results_df = pd.DataFrame({
-    'company_name1': candidate_df['company_name1'],
-    'company_name2': candidate_df['company_name2'],
-    'prediction': predictions
-})
-
-# Debug: Verifica le prime righe di results_df
-print("Prime righe di results_df:")
-print(results_df.head())
-
-# Creiamo una colonna di coppie
-ground_truth_df['pair'] = list(zip(ground_truth_df['company_name1'], ground_truth_df['company_name2']))
-results_df['pair'] = list(zip(results_df['company_name1'], results_df['company_name2']))
-
-# Stampa le dimensioni dei dataframe prima del merge
-print(f"Dimensione di results_df: {results_df.shape}")
-print(f"Dimensione di ground_truth_df: {ground_truth_df.shape}")
-# Debug: Stampa i dati di alcune righe del dataframe ground_truth_df
-print(ground_truth_df.head())
-
-
-# 5. Uniamo i risultati con il ground truth per il calcolo delle metriche
-merged_results = pd.merge(ground_truth_df, results_df, on=['pair'], how='left', indicator=True)
-
-# Stampa la dimensione dopo il merge
-print(f"Dimensione dopo il merge: {merged_results.shape}")
-print("Prime righe del risultato del merge:")
-print(merged_results.head())
-
-# 6. Calcolo delle metriche
-TP = merged_results[(merged_results['_merge'] == 'both') & (merged_results['label'] == 1)].shape[0]
-FP = merged_results[(merged_results['_merge'] == 'right_only') & (merged_results['label'] == 0)].shape[0]
-TN = merged_results[(merged_results['_merge'] == 'left_only') & (merged_results['label'] == 0)].shape[0]
-FN = merged_results[(merged_results['_merge'] == 'both') & (merged_results['label'] == 0)].shape[0]
-
-precision = TP / (TP + FP) if (TP + FP) > 0 else 0
-recall = TP / (TP + FN) if (TP + FN) > 0 else 0
-f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
-
-# Output delle metriche
+# Stampa delle metriche
 print(f"Precision: {precision:.4f}")
 print(f"Recall: {recall:.4f}")
-print(f"F1 Score: {f1:.4f}")
+print(f"F1-Score: {f1:.4f}")
+print(f"Accuracy: {accuracy:.4f}")
+
+print(false_negatives)
+print(false_positives)
+
+print(f"false_negative_pairs:{false_negatives_pairs}")
+print(f"false_positive_pairs:{false_positives_pairs}")
+

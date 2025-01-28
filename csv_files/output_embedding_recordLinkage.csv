@@ -1,0 +1,106 @@
+Company_Name_1,Company_Name_2,Ground_Truth,Similarity,Prediction,Result
+vodafone,vodacom,0,0.8679,1,Mismatch
+bny mellon,national association,0,0.4500,1,Mismatch
+ubisoft,ubis,0,0.9143,1,Mismatch
+hinduja group,the hindu group,0,0.7992,1,Mismatch
+ferrari,ferrero,0,0.0000,0,Match
+salvatore ferragamo,ferragamo finanziaria spa,0,0.0000,0,Match
+meta materials,meta platforms (facebook),0,0.0000,0,Match
+uniqlo,uniqa,0,0.8933,1,Mismatch
+bad dolly limited,dolly noire,0,0.0000,0,Match
+meitis,metis,0,0.0000,0,Match
+hermes corporate and finances (uk) limited,hermes reply srl,0,0.0000,0,Match
+universal music group,universal cables,0,0.0000,0,Match
+american vanguard,vanguard group,0,0.5973,1,Mismatch
+moretti motor company,birra moretti,0,0.0000,0,Match
+burger king,berger paints,0,0.0000,0,Match
+louis vuitton,louis philippe,0,0.0000,0,Match
+apple,apollo,0,0.0000,0,Match
+rai pubblicita' spa,rai,0,0.0000,0,Match
+axe,axel mark,0,0.0000,0,Match
+barista lavazza (india),lavazza,0,0.0000,0,Match
+eastman chemical company,eastman kodak company,0,0.8800,1,Mismatch
+sky lab infotech,skytech,0,0.5387,1,Mismatch
+pixart imaging,pixar,0,0.0000,0,Match
+eni plenitude spa societa' benefit,apeiron societa' benefit spa,0,0.7161,1,Mismatch
+paramount health services tpa,paramount pictures international limited,0,0.0000,0,Match
+nitto boseki co. ltd,nitto boseki,0,0.0000,0,Match
+mclaren automotive limited,mclaren construction group plc,0,0.0000,0,Match
+bigbasket,milkbasket,0,0.0000,0,Match
+viatris,viacomcbs inc.,0,0.6238,1,Mismatch
+pizza pizza,pizza hut,0,0.0000,0,Match
+easier finances limited,clearer finances limited,0,0.8182,1,Mismatch
+new age clothes ltd,new age laundry ltd,0,0.8583,1,Mismatch
+good company limited,good and evil capital ltd,0,0.8380,1,Mismatch
+telus,telos,0,0.9067,1,Mismatch
+jgc corporation,jgc holdings corp,1,0.6357,0,Mismatch
+airbus americas customer services,airbus group,1,0.6788,0,Mismatch
+pepsico,pepsi-cola metropolitan bottling company,1,0.8350,1,Match
+coca-cola company,coca-cola,1,0.9059,1,Match
+apollomedics super speciality hospitals,apollo medical holdings,1,0.6658,0,Mismatch
+supreme industries,supreme engineering ltd,1,0.8630,1,Match
+amazon digital uk limited,amazon online uk limited,1,0.8767,1,Match
+unicoop firenze soc coop,unicoop tirreno soc coop,1,0.9214,1,Match
+ford india,chennai ford,1,0.5056,0,Mismatch
+amway corp,amway international inc.,1,0.6694,0,Mismatch
+timkensteel,timken company,1,0.6580,0,Mismatch
+bosch rexroth india,bosch india,1,0.9158,1,Match
+dominos pizza,domino's pizza enterprises limited,1,0.8765,1,Match
+the walt disney company,disney incorporated,1,0.5960,0,Mismatch
+rai,rai way,1,0.8667,1,Match
+xinyi automobile glass hong kong enterprises ltd,xinyi glass holdings,1,0.6942,0,Mismatch
+columbia banking system,columbia financial,1,0.8421,1,Match
+tata starbucks,tata coffee,1,0.6580,0,Mismatch
+fox corporation,fox factory holding corp,1,0.8355,1,Match
+software & support media ltd,software media ltd,1,0.8841,1,Match
+pt pelayaran tamarin samudra tbk,pt pelayaran nasional bina buana raya tbk,1,0.8708,1,Match
+pt bumi teknokultura unggul tbk,pt bumi citra permai tbk,1,0.6738,0,Mismatch
+b3 s.a. - brasil,bolsa,1,0.5958,0,Mismatch
+ooh!media limited,new age digital media limited,1,0.5838,0,Mismatch
+jpmorgan japanese investment trust plc,jpmorgan japan small cap growth & income plc,1,0.0000,0,Mismatch
+baillie gifford shin nippon plc,baillie gifford european growth trust plc,1,0.8715,1,Match
+asian marine services public company ltd,asian sea corp public company ltd,1,0.8913,1,Match
+ooh!media limited,new age digital media limited,1,0.5838,0,Mismatch
+formet celik kapi sanayi ve ticaret a.s.,adel kalemcilik ticaret ve sanayi a.s.,1,0.7777,0,Mismatch
+technology reply srl,reply,1,0.0000,0,Mismatch
+ovs spa,ovs s.p.a. ,1,0.0000,0,Mismatch
+nerolac paints,kansai paint co. ltd,1,0.5495,0,Mismatch
+pt intikeramik alamasri industri tbk,pt kawasan industri jababeka tbk,0,0.8017,1,Mismatch
+pt karya bersama anugerah tbk,pt anugerah kagum karya utama tbk,0,0.8273,1,Mismatch
+the mediterranean and gulf cooperative insurance and reinsurance company,gulf union alahlia cooperative insurance company,0,0.6911,1,Mismatch
+fincantieri spa,finarvedi spa,0,0.8807,1,Mismatch
+f.i.l.a. - fabbrica italiana lapis ed affini s.p.a.,enel spa,0,0.3668,1,Mismatch
+ryanair,rayonier,0,0.0000,0,Match
+rayonier inc.,rayonier advanced materials,0,0.0000,0,Match
+bwx limited,bmw services limited,0,0.0000,0,Match
+thaivivat insurance public company ltd,thai sugar terminal public company ltd,0,0.0000,0,Match
+eco life japan,global japan,0,0.0000,0,Match
+u fantasy ltd,fantasy network ltd,0,0.0000,0,Match
+decathlon france careers,decathlon italia srl,0,0.0000,0,Match
+ali' spa,ali' group srl,0,0.0000,0,Match
+rana motors,pastificio rana spa,0,0.0000,0,Match
+ferriera valsider spa,ferrari,0,0.0000,0,Match
+hd insurance,db insurance,0,0.0000,0,Match
+bulgarian air charter,bulgarian energy holding,0,0.0000,0,Match
+euroafrica interconnector,euroasia interconnector,0,0.8946,1,Mismatch
+universita' degli studi roma tre,universita' degli studi di roma la sapienza,0,0.9137,1,Mismatch
+atlantic navigation holdings,north atlantic smaller companies,0,0.0000,0,Match
+luks group (vietnam holdings) company ltd,vietnam holding ltd,0,0.0000,0,Match
+steel city securities ltd,millcon steel public company ltd,0,0.5883,1,Mismatch
+phoenix media investment,media investment optimization,0,0.0000,0,Match
+telepass spa,telepassport telecommunications,0,0.0000,0,Match
+s a ford construction limited,ford romania,0,0.0000,0,Match
+maroc telecom sa,telecom egypt co,0,0.0000,0,Match
+mcdonald,mott macdonald,0,0.0000,0,Match
+sony music entertainment,sony music publishing (us) llc,1,0.0000,0,Mismatch
+air india sats airport services,airports authority of india,0,0.0000,0,Match
+bulgartabac,bulgari spa,1,0.8545,1,Match
+big baboon,bad ass baboon group ltd,0,0.0000,0,Match
+bad boy bullyz ltd,bad boy motorz ltd,0,0.8735,1,Mismatch
+Bad Monkey Pictures,Bad Monkey Limited,0,0.0000,0,Match
+amazon,amazon web services inc,1,0.8522,1,Match
+maruti suzuki,suzuki motor gujarat,1,0.6472,0,Mismatch
+hyundai motor,hyundai engineering and construction,1,0.6490,0,Mismatch
+european residential real estate investment trust,schroder real estate investment trust limited,1,0.7940,0,Mismatch
+unifirst corporation,unisys corporation,1,0.8545,1,Match
+apple inc.,apple insurance & financial services,1,0.8300,1,Match

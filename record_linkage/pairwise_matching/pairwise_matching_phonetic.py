@@ -1,63 +1,103 @@
-import pandas as pd
-import recordlinkage
+import jellyfish
+import csv
+from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score
 
-# Carica i dati delle aziende
-df = pd.read_csv("C:/Users/crist/OneDrive/Documenti/GitHub/idd-HW5/mediated_schema.csv")
-# Aggiungi un indice numerico temporaneo al DataFrame delle aziende
+# File di input e output
+file_path = "C:/Users/crist/OneDrive/Documenti/GitHub/idd-HW5/csv_files/all_pairs_metaphone.csv"  # File con le coppie effettive
+ground_truth_path = "C:/Users/crist/OneDrive/Documenti/GitHub/idd-HW5/csv_files/GROUND_TRUTH.csv"  # File con la ground truth (coppie e label)
+output_path = "C:/Users/crist/OneDrive/Documenti/GitHub/idd-HW5/csv_files/output_fonetic_recordLinkage.csv"  # File per salvare i risultati
 
-# Carica i due CSV
-df1 = pd.read_csv('C:/Users/crist/OneDrive/Documenti/GitHub/idd-HW5/df1.csv')  # Assicurati di avere il percorso corretto
-df2 = pd.read_csv('C:/Users/crist/OneDrive/Documenti/GitHub/idd-HW5/df2.csv')
+# Lettura delle coppie effettive dal file principale
+effettive = set()  # Usa un set per un lookup veloce
+with open(file_path, "r", newline="", encoding="utf-8") as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        company1 = row["Company_Name_1"]
+        company2 = row["Company_Name_2"]
+        effettive.add((company1, company2))
 
-# Assicurati che le colonne siano corrette e non abbiano spazi indesiderati
-df1.columns = df1.columns.str.strip()
-df2.columns = df2.columns.str.strip()
+# Lettura della ground truth e verifica
+y_true = []  # Label della ground truth
+y_pred = []  # Previsioni basate sulla similarità
+threshold = 0.8  # Soglia per considerare una similarità "alta"
 
-# Crea il MultiIndex con le coppie da confrontare
-# Ogni Cluster ID deve essere confrontato tra df1 e df2
-pairs = pd.merge(df1[['Cluster ID']], df2[['Cluster ID']], on='Cluster ID', how='inner', suffixes=('_1', '_2'))
+false_positives=0
+false_negatives=0
+match_counter=0
 
-# Crea il MultiIndex con gli indici dei DataFrame
-multi_index = pd.MultiIndex.from_frame(df1[['Cluster ID']].join(df2[['Cluster ID']], lsuffix='_df1', rsuffix='_df2'))
-'''
-print(multi_index.shape)
-print(multi_index[1])
-print(df1.head())
-print(df2.head())
-print(df1.index)
-print(df2.index)
-print(multi_index)
-'''
+false_positives_pairs=[]
+false_negatives_pairs=[]
 
-print("artem")
-print(multi_index)
+with open(ground_truth_path, "r", newline="", encoding="utf-8") as gt_file, \
+     open(output_path, "w", newline="", encoding="utf-8") as outputfile:
+    
+    gt_reader = csv.reader(gt_file)
+    writer = csv.writer(outputfile)
+    
+    # Scrivi l'intestazione nel file di output
+    writer.writerow(["Company_Name_1", "Company_Name_2", "Ground_Truth", "Similarity", "Prediction", "Result"])
+    
+    # Salta l'intestazione del file di ground truth
+    next(gt_reader, None)
+    
+    for row in gt_reader:
+        if len(row) < 3:  # Salta righe incomplete
+            continue
+        
+        company1, company2, label = row[0], row[1], int(row[2])
+        y_true.append(label)  # Aggiungi la label della ground truth
+        
+        # Verifica se la coppia è presente nel file effettivo
+        pair_present = (company1, company2) in effettive
+        similarity = 0.0  # Default
+        
+        if pair_present:
+            # Calcola la similarità se la coppia è presente
+            similarity = jellyfish.jaro_winkler_similarity(company1, company2)
+        
+        # Logica di predizione
+        if label == 1:
+            # Se la coppia deve essere presente
+            if pair_present and similarity >= threshold:
+                prediction = 1 
+            else:
+                prediction = 0
+                false_negatives+=1
+                false_negatives_pairs.append((company1,company2))
+        else:
+            # Se la coppia non deve essere presente
+            if pair_present:
+                prediction = 1 
+                false_positives+=1
+                false_positives_pairs.append((company1,company2))
+            else:
+                prediction=0
+        
+        # Aggiungi la previsione
+        y_pred.append(prediction)
+        
+        # Determina il risultato (match o mismatch con la ground truth)
+        result = "Match" if prediction == label else "Mismatch"
+        if result == "Match":
+            match_counter+=1
+        
+        # Salva i risultati
+        writer.writerow([company1, company2, label, f"{similarity:.4f}", prediction, result])
 
-# Controlla che gli indici di df1 e df2 siano validi per il multi_index
-valid_indices_df1 = multi_index.get_level_values(0).isin(df1.index)
-valid_indices_df2 = multi_index.get_level_values(1).isin(df2.index)
+# Calcolo delle metriche
+precision = match_counter/105
+recall = match_counter/(match_counter+false_positives)
+f1 = (2*precision*recall)/(precision+recall)
+accuracy = accuracy_score(y_true, y_pred)
 
+# Stampa delle metriche
+print(f"Precision: {precision:.4f}")
+print(f"Recall: {recall:.4f}")
+print(f"F1-Score: {f1:.4f}")
+print(f"Accuracy: {accuracy:.4f}")
 
+print(false_negatives)
+print(f"false_negative_pairs:{false_negatives_pairs}")
+print(false_positives)
+print(f"false_positive_pairs:{false_positives_pairs}")
 
-df1_selected = df1.loc[multi_index.get_level_values(0)]
-df2_selected = df2.loc[multi_index.get_level_values(1)]
-
-# Stampa il risultato
-print(f"df1_selected shape: {df1_selected.shape}")
-print(f"df2_selected shape: {df2_selected.shape}")
-print("dovbyk")
-
-
-# Crea l'oggetto Compare
-comp = recordlinkage.Compare()
-
-# Aggiungi le caratteristiche da confrontare. Ad esempio, usa 'jarowinkler' per confrontare i nomi delle aziende.
-comp.string('Company_Name_1', 'Company_Name_2', method='jarowinkler', label='name_similarity')
-
-# Esegui il confronto
-features = comp.compute(multi_index, df1, df2)
-
-# Salva i risultati in un file CSV
-features.to_csv('pairwise_comparison_results.csv')
-
-# Mostra i risultati
-print(features.head())
