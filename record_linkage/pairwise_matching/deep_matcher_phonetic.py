@@ -1,9 +1,7 @@
 import deepmatcher as dm
-
 import pandas as pd
  
 # ===== 1. PRE-ELABORAZIONE DEI DATI =====
-
 # Carica e processa i dati di training
 
 print("Pre-elaborazione dei dati di training e validation...")
@@ -39,15 +37,13 @@ test = dm.data.process(
 )
  
 # ===== 2. CREAZIONE DEL MODELLO =====
-
 # Inizializza il modello DeepMatcher
 
 print("Creazione del modello...")
 
-model = dm.MatchingModel(attr_summarizer='rnn')  # Usa RNN come attributo sintetizzatore
+model = dm.MatchingModel(attr_summarizer='rnn')  # Usa RNN come attributo sintetizzatore (hybrid alternativa)
  
 # ===== 3. ADDESTRAMENTO DEL MODELLO =====
-
 # Addestra il modello usando i dati di training e validation
 
 print("Addestramento del modello...")
@@ -58,16 +54,13 @@ model.run_train(
 
     validation,
 
-    epochs=5,                  # Numero di epoche (configurabile)
-
-    batch_size=32,             # Dimensione del batch (configurabile)
+    epochs=1,                  # Numero di epoche (configurabile)
 
     best_save_path='best_model.pth'  # Salva il miglior modello durante l'addestramento
 
 )
  
 # ===== 4. VALUTAZIONE DEL MODELLO =====
-
 # Valuta il modello usando i dati di test
 
 print("Valutazione del modello...")
@@ -79,7 +72,6 @@ print("Risultati sul set di test:")
 print(results)
  
 # ===== 5. SALVATAGGIO DEL MODELLO =====
-
 # Salva lo stato del modello addestrato per usi futuri
 
 print("Salvataggio del modello...")
@@ -99,5 +91,7 @@ predictions = model.run_prediction(unlabeled)
 predictions.to_csv('/home/trabbo/Documents/GitHub/idd-HW5/csv_files/deepmatch_predictions_phonetic.csv', index=False)
 
 print("Previsioni salvate in 'predictions.csv'.")
+
+# confronto con la ground truth da fare....
 
  
