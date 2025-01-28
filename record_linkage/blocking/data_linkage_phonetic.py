@@ -5,7 +5,7 @@ from rapidfuzz import fuzz
 
 # Carica il file CSV
 try:
-    dataframe = pd.read_csv("mediated_schema.csv", encoding='latin1', low_memory=False)
+    dataframe = pd.read_csv("C:/Users/hp/idd-HW5/csv_files/mediated_schema.csv", encoding='latin1', low_memory=False)
 except UnicodeDecodeError as e:
     print(f"Errore nella lettura del file CSV: {e}")
     dataframe = pd.DataFrame()  # Inizializza un DataFrame vuoto in caso di errore
@@ -75,7 +75,7 @@ if 'CompanyName_Metaphone' in dataframe.columns:
     print(similar_matches)
 
     # Salva i risultati in un file CSV
-    output_filename = "merged_similar_matches_metaphone.csv"
+    output_filename = "clustered_metaphone.csv"
     similar_matches.to_csv(output_filename, index=False, encoding='utf-8')
     print(f"Risultati salvati nel file: {output_filename}")
 else:

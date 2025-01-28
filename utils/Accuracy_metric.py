@@ -36,8 +36,8 @@ def calculate_metric(hypothetical_file, actual_pairs):
     return accuracy
 
 
-hypothetical_file = 'C:/Users/crist/OneDrive/Documenti/GitHub/idd-HW5/GROUND_TRUTH.csv'  # File con tutte le coppie effettive
-actual_pairs_file = 'C:/Users/crist/OneDrive/Documenti/GitHub/idd-HW5/All_pairs.csv'  # File con le coppie ipotetiche
+hypothetical_file = 'C:/Users/hp/idd-HW5/csv_files/GROUND_TRUTH.csv'  # File con tutte le coppie effettive
+actual_pairs_file = 'C:/Users/hp/idd-HW5/csv_files/all_pairs_embedding.csv'  # File con le coppie ipotetiche
 
 # Carica le coppie effettive
 actual_pairs = load_actual_pairs(actual_pairs_file)

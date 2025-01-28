@@ -4,7 +4,7 @@ from sentence_transformers import SentenceTransformer
 from collections import defaultdict
 
 # Carica il file CSV
-dataframe = pd.read_csv("mediated_schema.csv", encoding='latin1', low_memory=False)
+dataframe = pd.read_csv("C:/Users/hp/idd-HW5/csv_files/mediated_schema.csv", encoding='latin1', low_memory=False)
 
 # Converte tutte le colonne in stringhe
 dataframe = dataframe.astype(str)
@@ -37,6 +37,6 @@ for cluster_id, companies in grouped_names.items():
 
 # Salva i risultati in un file CSV
 output_df = pd.DataFrame(final_results, columns=['Cluster ID', 'Company Names'])
-output_df.to_csv("clustered_companies.csv", index=False, encoding='utf-8')
+output_df.to_csv("C:/Users/hp/idd-HW5/csv_files/clustered_embedding.csv", index=False, encoding='utf-8')
 
 print("Clustering completato. Risultati salvati in 'clustered_companies.csv'.")
