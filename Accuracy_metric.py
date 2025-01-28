@@ -35,15 +35,14 @@ def calculate_metric(hypothetical_file, actual_pairs):
     accuracy = counter / total_contributions if total_contributions > 0 else 0
     return accuracy
 
-# Esempio di utilizzo
-if __name__ == "__main__":
-    hypothetical_file = 'C:/Users/hp/idd-HW5/GROUND_TRUTH.csv'  # File con tutte le coppie effettive
-    actual_pairs_file = 'C:/Users/hp/idd-HW5/All_pairs_metaphone.csv'  # File con le coppie ipotetiche
 
-    # Carica le coppie effettive
-    actual_pairs = load_actual_pairs(actual_pairs_file)
+hypothetical_file = 'C:/Users/crist/OneDrive/Documenti/GitHub/idd-HW5/GROUND_TRUTH.csv'  # File con tutte le coppie effettive
+actual_pairs_file = 'C:/Users/crist/OneDrive/Documenti/GitHub/idd-HW5/All_pairs.csv'  # File con le coppie ipotetiche
 
-    # Calcola la metrica
-    accuracy = calculate_metric(hypothetical_file, actual_pairs)
+# Carica le coppie effettive
+actual_pairs = load_actual_pairs(actual_pairs_file)
 
-    print(f"L'accuracy calcolata è: {accuracy:.4f}")
+# Calcola la metrica
+accuracy = calculate_metric(hypothetical_file, actual_pairs)
+
+print(f"L'accuracy calcolata è: {accuracy:.4f}")
