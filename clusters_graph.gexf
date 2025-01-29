@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd" version="1.2">
+  <meta lastmodifieddate="2025-01-29">
+    <creator>NetworkX 3.2.1</creator>
+  </meta>
+  <graph defaultedgetype="undirected" mode="static" name="">
+    <attributes mode="static" class="node">
+      <attribute id="0" title="cluster" type="long" />
+      <attribute id="1" title="x" type="double" />
+      <attribute id="2" title="y" type="double" />
+    </attributes>
+    <nodes>
+      <node id="tcs" label="tcs">
+        <attvalues>
+          <attvalue for="0" value="0" />
+          <attvalue for="1" value="-7.668323040008545" />
+          <attvalue for="2" value="46.19640350341797" />
+        </attvalues>
+      </node>
+      <node id="tcts" label="tcts">
+        <attvalues>
+          <attvalue for="0" value="0" />
+          <attvalue for="1" value="-11.70892333984375" />
+          <attvalue for="2" value="55.90512466430664" />
+        </attvalues>
+      </node>
+      <node id="deltamed" label="deltamed">
+        <attvalues>
+          <attvalue for="0" value="31985" />
+          <attvalue for="1" value="-1.8650480508804321" />
+          <attvalue for="2" value="24.413822174072266" />
+        </attvalues>
+      </node>
+      <node id="smartcredit (smartsearch)" label="smartcredit (smartsearch)">
+        <attvalues>
+          <attvalue for="0" value="31986" />
+          <attvalue for="1" value="-86.15646362304688" />
+          <attvalue for="2" value="37.98234558105469" />
+        </attvalues>
+      </node>
+      <node id="smartsearch" label="smartsearch">
+        <attvalues>
+          <attvalue for="0" value="31986" />
+          <attvalue for="1" value="-85.33324432373047" />
+          <attvalue for="2" value="28.101118087768555" />
+        </attvalues>
+      </node>
+      <node id="tripin" label="tripin">
+        <attvalues>
+          <attvalue for="0" value="31987" />
+          <attvalue for="1" value="58.05327224731445" />
+          <attvalue for="2" value="14.375158309936523" />
+        </attvalues>
+      </node>
+      <node id="continental wood kft." label="continental wood kft.">
+        <attvalues>
+          <attvalue for="0" value="31988" />
+          <attvalue for="1" value="-39.101219177246094" />
+          <attvalue for="2" value="-13.861184120178223" />
+        </attvalues>
+      </node>
+      <node id="continental wood" label="continental wood">
+        <attvalues>
+          <attvalue for="0" value="31988" />
+          <attvalue for="1" value="-42.353233337402344" />
+          <attvalue for="2" value="-4.541031360626221" />
+        </attvalues>
+      </node>
+      <node id="artos" label="artos">
+        <attvalues>
+          <attvalue for="0" value="31989" />
+          <attvalue for="1" value="36.545536041259766" />
+          <attvalue for="2" value="4.5856428146362305" />
+        </attvalues>
+      </node>
+      <node id="kaizen solutions" label="kaizen solutions">
+        <attvalues>
+          <attvalue for="0" value="31990" />
+          <attvalue for="1" value="-12.13476848602295" />
+          <attvalue for="2" value="-68.8004150390625" />
+        </attvalues>
+      </node>
+      <node id="geoteam" label="geoteam">
+        <attvalues>
+          <attvalue for="0" value="31991" />
+          <attvalue for="1" value="-5.1062469482421875" />
+          <attvalue for="2" value="-10.698160171508789" />
+        </attvalues>
+      </node>
+      <node id="leascorp" label="leascorp">
+        <attvalues>
+          <attvalue for="0" value="31992" />
+          <attvalue for="1" value="5.117677211761475" />
+          <attvalue for="2" value="-6.131119251251221" />
+        </attvalues>
+      </node>
+      <node id="ciao gusto" label="ciao gusto">
+        <attvalues>
+          <attvalue for="0" value="31993" />
+          <attvalue for="1" value="48.79672622680664" />
+          <attvalue for="2" value="0.993672788143158" />
+        </attvalues>
+      </node>
+      <node id="bvs construction" label="bvs construction">
+        <attvalues>
+          <attvalue for="0" value="31994" />
+          <attvalue for="1" value="-14.089299201965332" />
+          <attvalue for="2" value="-46.13841247558594" />
+        </attvalues>
+      </node>
+      <node id="positive healthcare" label="positive healthcare">
+        <attvalues>
+          <attvalue for="0" value="31995" />
+          <attvalue for="1" value="11.346048355102539" />
+          <attvalue for="2" value="-54.16937255859375" />
+        </attvalues>
+      </node>
+      <node id="nrt" label="nrt">
+        <attvalues>
+          <attvalue for="0" value="31996" />
+          <attvalue for="1" value="-18.59990882873535" />
+          <attvalue for="2" value="66.9361572265625" />
+        </attvalues>
+      </node>
+      <node id="sonnen" label="sonnen">
+        <attvalues>
+          <attvalue for="0" value="31997" />
+          <attvalue for="1" value="38.50749588012695" />
+          <attvalue for="2" value="33.32141876220703" />
+        </attvalues>
+      </node>
+      <node id="liberis" label="liberis">
+        <attvalues>
+          <attvalue for="0" value="31998" />
+          <attvalue for="1" value="15.394682884216309" />
+          <attvalue for="2" value="15.606032371520996" />
+        </attvalues>
+      </node>
+      <node id="ralph schmolke" label="ralph schmolke">
+        <attvalues>
+          <attvalue for="0" value="31999" />
+          <attvalue for="1" value="-17.153972625732422" />
+          <attvalue for="2" value="21.5687313079834" />
+        </attvalues>
+      </node>
+      <node id="roomie milano" label="roomie milano">
+        <attvalues>
+          <attvalue for="0" value="32000" />
+          <attvalue for="1" value="50.04166030883789" />
+          <attvalue for="2" value="34.14531707763672" />
+        </attvalues>
+      </node>
+      <node id="les brasseurs savoyards" label="les brasseurs savoyards">
+        <attvalues>
+          <attvalue for="0" value="32001" />
+          <attvalue for="1" value="71.59891510009766" />
+          <attvalue for="2" value="29.687244415283203" />
+        </attvalues>
+      </node>
+      <node id="ova projects" label="ova projects">
+        <attvalues>
+          <attvalue for="0" value="32002" />
+          <attvalue for="1" value="-6.427195072174072" />
+          <attvalue for="2" value="-53.847965240478516" />
+        </attvalues>
+      </node>
+      <node id="caamaã±o" label="caamaã±o">
+        <attvalues>
+          <attvalue for="0" value="32006" />
+          <attvalue for="1" value="59.08943557739258" />
+          <attvalue for="2" value="-6.408738136291504" />
+        </attvalues>
+      </node>
+      <node id="concheiro &amp; seoane" label="concheiro &amp; seoane">
+        <attvalues>
+          <attvalue for="0" value="32006" />
+          <attvalue for="1" value="39.09954071044922" />
+          <attvalue for="2" value="-18.386289596557617" />
+        </attvalues>
+      </node>
+    </nodes>
+    <edges />
+  </graph>
+</gexf>
