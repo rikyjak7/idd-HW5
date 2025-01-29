@@ -24,9 +24,6 @@ else:
         test=TEST_DATA_PATH,
         cache=False
     )
-    
-    # Aggiungi la colonna 'id' (ad esempio usando l'indice)
-    #predict_data['id'] = predict_data.index
 
 # ===== 3. ESECUZIONE DELLE PREVISIONI =====
 predictions = model.run_prediction(predict_data, output_attributes=True)
