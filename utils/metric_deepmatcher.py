@@ -71,7 +71,7 @@ with open(ground_truth_path, "r", newline="", encoding="utf-8") as gt_file:
             match_counter += 1
 
 # Calcolo delle metriche
-precision = match_counter / 105
+precision = match_counter / 120
 recall = match_counter / (match_counter + false_positives)
 f1 = (2 * precision * recall) / (precision + recall)
 accuracy = accuracy_score(y_true, y_pred)
