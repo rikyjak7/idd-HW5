@@ -61,7 +61,7 @@ jpmorgan japanese investment trust plc,jpmorgan japan small cap growth & income 
 baillie gifford shin nippon plc,baillie gifford european growth trust plc,1,0.8715,1,Match
 asian marine services public company ltd,asian sea corp public company ltd,1,0.8913,1,Match
 ooh!media limited,new age digital media limited,1,0.5838,0,Mismatch
-formet celik kapi sanayi ve ticaret a.s.,adel kalemcilik ticaret ve sanayi a.s.,1,0.7777,0,Mismatch
+formet celik kapi sanayi ve ticaret a.s.,adel kalemcilik ticaret ve sanayi a.s.,1,0.7777,1,Match
 technology reply srl,reply,1,0.0000,0,Mismatch
 ovs spa,ovs s.p.a. ,1,0.0000,0,Mismatch
 nerolac paints,kansai paint co. ltd,1,0.5495,0,Mismatch
@@ -101,6 +101,20 @@ Bad Monkey Pictures,Bad Monkey Limited,0,0.0000,0,Match
 amazon,amazon web services inc,1,0.8522,1,Match
 maruti suzuki,suzuki motor gujarat,1,0.6472,0,Mismatch
 hyundai motor,hyundai engineering and construction,1,0.6490,0,Mismatch
-european residential real estate investment trust,schroder real estate investment trust limited,1,0.7940,0,Mismatch
+european residential real estate investment trust,schroder real estate investment trust limited,1,0.7940,1,Match
 unifirst corporation,unisys corporation,1,0.8545,1,Match
 apple inc.,apple insurance & financial services,1,0.8300,1,Match
+vodafone czech republic,vodafone corporate limited,1,0.8433,1,Match
+reliance capital,reliancesmart.in,1,0.8568,1,Match
+fuji media holdings,fujifilm holdings corporation,1,0.6729,0,Mismatch
+h & a consortium ltd,s a consultancy limited,1,0.7341,1,Match
+toagosei,dukes,0,0.0000,0,Match
+dxy,dexia,0,0.0000,0,Match
+essentra,esentire,0,0.0000,0,Match
+ibm,wibmo,0,0.0000,0,Match
+nse,nhoa sa,0,0.0000,0,Match
+cibc,sabic,0,0.0000,0,Match
+startek,stratec se,0,0.0000,0,Match
+le panier,lupin,0,0.0000,0,Match
+beauty benefits ltd,beauty boutique kensington ltd,1,0.8650,1,Match
+s a fashion trading ltd,s a group holdings limited,1,0.8283,1,Match

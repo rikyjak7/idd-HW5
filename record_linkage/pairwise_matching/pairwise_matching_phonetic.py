@@ -19,7 +19,7 @@ with open(file_path, "r", newline="", encoding="utf-8") as csvfile:
 # Lettura della ground truth e verifica
 y_true = []  # Label della ground truth
 y_pred = []  # Previsioni basate sulla similarità
-threshold = 0.8  # Soglia per considerare una similarità "alta"
+threshold = 0.7  # Soglia per considerare una similarità "alta"
 
 false_positives=0
 false_negatives=0
@@ -85,7 +85,7 @@ with open(ground_truth_path, "r", newline="", encoding="utf-8") as gt_file, \
         writer.writerow([company1, company2, label, f"{similarity:.4f}", prediction, result])
 
 # Calcolo delle metriche
-precision = match_counter/105
+precision = match_counter/120
 recall = match_counter/(match_counter+false_positives)
 f1 = (2*precision*recall)/(precision+recall)
 accuracy = accuracy_score(y_true, y_pred)
