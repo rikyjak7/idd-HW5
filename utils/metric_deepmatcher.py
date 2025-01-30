@@ -23,7 +23,8 @@ threshold = 0.7  # Soglia per considerare una similarità "alta"
 
 false_positives = 0
 false_negatives = 0
-match_counter = 0
+true_positives = 0
+true_negatives = 0
 
 false_positives_pairs = []
 false_negatives_pairs = []
@@ -50,6 +51,7 @@ with open(ground_truth_path, "r", newline="", encoding="utf-8") as gt_file:
             # Se la coppia deve essere presente
             if pair_present and similarity >= threshold:
                 prediction = 1 
+                true_positives += 1
             else:
                 prediction = 0
                 false_negatives += 1
@@ -62,25 +64,28 @@ with open(ground_truth_path, "r", newline="", encoding="utf-8") as gt_file:
                 false_positives_pairs.append((company1, company2))
             else:
                 prediction = 0
+                true_negatives += 1
         
         # Aggiungi la previsione
         y_pred.append(prediction)
         
         # Determina il risultato (match o mismatch con la ground truth)
-        if prediction == label:
-            match_counter += 1
+        #if prediction == label:
+            #match_counter += 1
 
 # Calcolo delle metriche
-precision = match_counter / 120
-recall = match_counter / (match_counter + false_positives)
-f1 = (2 * precision * recall) / (precision + recall)
+precision = true_positives/(true_positives+false_positives)
+recall = true_positives/(true_positives+false_negatives)
+f1 = (2*precision*recall)/(precision+recall)
 accuracy = accuracy_score(y_true, y_pred)
+accuracy1=(true_positives+true_negatives)/(true_positives+true_negatives+false_negatives+false_positives)
 
 # Stampa delle metriche
 print(f"Precision: {precision:.4f}")
 print(f"Recall: {recall:.4f}")
 print(f"F1-Score: {f1:.4f}")
 print(f"Accuracy: {accuracy:.4f}")
+print(f"Accuracy: {accuracy1:.4f}")
 
 print(false_negatives)
 print(false_positives)
